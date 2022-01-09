@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block carousel %}
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-success mt-2" role="alert">
+        Obrigado {{order.first_name|upper}}!
+        <br>
+        Seu pedido Nº {{order.id}} foi realizado com sucesso!
+    </div>
+{% endblock %}

@@ -1,0 +1,6 @@
+media/
+migrations/
+__pycache__/
+db.sqlite3
+loja_env/
+dshouse/settings.py

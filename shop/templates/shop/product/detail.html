@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block carousel %}
+{% endblock %}
+
+{% block content %}
+<div class="row ">
+    <div class="d-flex align-items-center">
+
+        <div class="col-sm-2">
+            <div class="card">
+                <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap"
+                    style="max-height: 25rem; max-width: 25rem;">
+            </div>
+        </div>
+
+        <div class="col-sm-7">
+        <div class="card">
+            <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap"
+                style="max-height: 35rem; max-width: 50rem;">
+        </div>
+        </div>
+
+        <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">{{product.name|upper}}</h5>
+            <h6 class="card-text">
+                {{product.description|linebreaks}}
+                {{product.price}}
+            </h6>
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {% csrf_token %}
+                {{ cart_product_form }}
+                <input type="submit" value="Comprar" class="btn btn-primary">
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var quantity = document.getElementById("id_quantity");
+    quantity.setAttribute('onchange','return false')
+</script>
+{% endblock %}

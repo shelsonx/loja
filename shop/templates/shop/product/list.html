@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% block carousel %}
+    {% endblock %}
+    {% for product in products %}
+        <div class="col-sm-3 mt-3">
+            <div class="card mb-3">
+                <img class="card-img-top" 
+                    src="{% if product.image %} {{product.image.url}} {% endif %}" 
+                    style="height: 197px;">
+                <div class="card-body">
+                    <h5 class="card-title mb-1">
+                        <a href="{{product.get_absolute_url}}">{{product.name}}</a>
+                    </h5>
+                    
+                    <h6 class="card-text text-justify">
+                        {{product.description|linebreaks}}
+                        {{product.price}}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

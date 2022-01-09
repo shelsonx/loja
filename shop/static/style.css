@@ -1,0 +1,7 @@
+.carousel .carousel-item{
+    max-height: 550px;
+}
+
+.carousel-item img{
+    max-height: 550px;
+}

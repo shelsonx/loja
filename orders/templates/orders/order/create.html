@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block carousel %}
+{% endblock %}
+
+{% block content %}
+    
+<div class="row mt-2">
+    <div class="d-flex align-items-center justify-content-around">
+        <div class="col-sm-1">
+            <div class="card" style="width: 18rem; padding: 1rem;">
+                <form method="POST">
+                    {{form.as_p}}
+                    {% csrf_token %}
+                    <input type="submit" value="Fazer Pedido" class="btn btn-danger">
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-1">
+            <div class="card ml-2" style="width: 18rem;">
+                <div class="card-header">
+                    Seu pedido:
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% for item in cart %}
+                            <li class="list-group-item">
+                                {{item.quantity}} x {{item.product.name }} = {{item.total_price|floatformat:2}}</li>
+                        {% endfor %}
+
+                        {% if cart.coupon %}
+                            <li class="list-group-item" style="text-align: center;">
+                                -${{cart.get_discount|floatformat:2}}
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="card-footer text-muted">
+                    TOTAL: {{cart.get_total_price_after_discount|floatformat:2}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
